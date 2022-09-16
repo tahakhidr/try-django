@@ -12,3 +12,17 @@ def home(request):
     }
 
     return render(request, "home.html", context)
+
+
+def article_search(request):
+    try:
+        query = int(request.GET.get("q"))
+    except:
+        query = None
+    article = None
+    if query is not None:
+        article = Article.objects.get(id=query)
+    context = {
+        "object": article,
+    }
+    return render(request, "search.html", context)
