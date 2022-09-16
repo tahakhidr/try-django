@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Article
+from .forms import ArticleForm
 
 
 def article_detail(request, id=None):
@@ -14,8 +15,9 @@ def article_detail(request, id=None):
 
 
 def article_create(request):
-    context = {}
-    if request.method == "POST":
+    form = ArticleForm(request.POST or None)
+    context = {"form": form}
+    if form.is_valid():
         title = request.POST.get("title")
         content = request.POST.get("content")
         article = Article.objects.create(title=title, content=content)
