@@ -18,8 +18,6 @@ def article_create(request):
     form = ArticleForm(request.POST or None)
     context = {"form": form}
     if form.is_valid():
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        article = Article.objects.create(title=title, content=content)
+        article = form.save()
         context['object'] = article
     return render(request, "articles/create.html", context)
