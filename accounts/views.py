@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
-def login(request):
-    context = {}
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        user = User.objects.create(username=username, password=password)
+def register(request):
+    form = UserCreationForm(request.POST or None)
+    context = {"form": form}
+    if form.is_valid():
+        form.save()
         return redirect("/")
-    return render(request, "accounts/login.html", context)
+    return render(request, "accounts/register.html", context)
