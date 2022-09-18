@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Article
 from .forms import ArticleForm
 
 
-def article_detail(request, id=None):
+def article_detail(request, slug=None):
     article = None
-    if id is not None:
-        article = Article.objects.get(id=id)
+    if slug is not None:
+        article = get_object_or_404(Article, slug=slug)
     context = {
         "object": article
     }

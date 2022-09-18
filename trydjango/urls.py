@@ -6,9 +6,9 @@ from accounts.views import (register)
 
 urlpatterns = [
     path('', home, name='home'),
-    path('articles/', article_search, name='article_search'),
-    path('articles/create/', article_create, name='article_crete'),
-    path('articles/<int:id>/', article_detail, name='article_detail'),
+    path('articles/', article_search, name='article-search'),
+    path('articles/create/', article_create, name='article-crete'),
+    path('articles/<slug:slug>/', article_detail, name='article-detail'),
     path('admin/', admin.site.urls),
 
     path('accounts/register/', register, name='register'),
