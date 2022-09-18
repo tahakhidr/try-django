@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ object.title }} (id: {{ id }})!</h1>
-<p>{{ object.content }}</p>
+
+<div style="margin-top:20px">
+    <a href="{% url 'article-create' %}">Create Article</a>
+</div>
 
 <ul>
     {% for object in object_list %}
-    <li><a href="/articles/{{ object.slug }}/">{{ object.title }} - {{ object.content }}</a></li>
+    <li><a href="{{ object.get_absolute_url }}">{{ object.title }} - {{ object.content }}</a></li>
     {% endfor %}
 </ul>
 

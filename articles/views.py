@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article
 from .forms import ArticleForm
 
@@ -20,4 +20,5 @@ def article_create(request):
     if form.is_valid():
         article = form.save()
         context['object'] = article
+        return redirect(article.get_absolute_url())
     return render(request, "articles/create.html", context)

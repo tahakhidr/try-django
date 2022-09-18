@@ -13,7 +13,7 @@
 </form>
 {% else %}
 <p>Your article was created</p>
-<a href="/articles/{{ object.id }}/">{{ object.title }} - {{ object.content }}</a>
+<a href="{{ object.get_absolute_url }}">{{ object.title }} - {{ object.content }}</a>
 {% endif %}
 
 {% endblock content %}
